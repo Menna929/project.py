@@ -56,6 +56,7 @@ def main():
                 print("Invalid input. Please choose 1 or 2.")
 
     def plant():
+        global foods
         foods = foods - 10
         return "You planted some Food"
 
@@ -359,7 +360,6 @@ def main():
             return 1
         elif fu < num:
             print_pause("You don't have enough ",1.5)
-            lucky_wheel(1,num/2,num) 
             return 2
 
     def lucky_wheel(start,end,target):# printing function
@@ -498,7 +498,7 @@ def main():
             if cont == 2:
                 print_pause("Mission failed",1.8)
                 break
-    """
+    
     print("   ")
     print("***")
     print_pause("Next mission : Make guns",2.1)
@@ -507,25 +507,28 @@ def main():
     print_pause("You should have 12 materials to make enough guns ",2)
     print("  ")
     
-    kl = matr_check(materials,12)
-    if kl == 1:
-        print_pause("Making Guns....",3)
-        materials = materials - 12
-        print_pause("You now have guns to defend"
-                        "your group against wolfs",2)
-        print("Your materials: ",materials)
-        weapon = True
-        print("Score: ",total_score)
-        time.sleep(1.5)
-    elif cont == 2:
-        print("    ")
-        print_pause("Mission failed",1.5)
-            
+    while True:
+        kl = matr_check(materials,12)
+        if kl == 1:
+            print_pause("Making Guns....",3)
+            materials = materials - 12
+            print_pause("You now have guns to defend"
+                            "your group against wolfs",2)
+            print("Your materials: ",materials)
+            weapon = True
+            print("Score: ",total_score)
+            time.sleep(1.5)
+            break
+        elif cont == 2:
+            print("    ")
+            print_pause("Mission failed",1.5)
+            break
+    """         
     print("    ")
 
     #Random missions for one day in a function
     def days ():
-        global total_score,weapon,misd
+        global total_score,weapon,misd,yn
         n = 1 # variable for determinig the time based on
         #the number of activities done through the day
         mis1 = "Food for group"
@@ -533,14 +536,13 @@ def main():
         mis3 = "collect materilas"
         mis4 = "Discover island"
         mis5 = "Wolfs attack"
-        missions = { mis1,mis2,mis3,mis4,mis5 }    
+        missions = [ mis1,mis2,mis3,mis4,mis5 ]    
         for tr in list(range(1,6)):
             print("    \n****\n   ")        
             if n <= 3:
                 print_pause("Time : day",1.5)
             elif n > 3:
                 print_pause("Time : night",1.5)
-            print("Score: ",total_score)
             time.sleep(1.5)
             choicel = random.choice(missions)
             print("Mission : ", choicel)
@@ -605,7 +607,6 @@ def main():
             elif yn == False :
                 print_pause("Mission Failed",2)
                 total_score -= 5
-            print("Score: ",total_score)
             misd = False
             yn = False
             n += 1
@@ -633,98 +634,105 @@ def main():
     print("   ")
     print("Score: ",total_score)
     time.sleep(1.5)
-    print_pause("\nTo check food, Enter 1\nTo check Materials, Enter 2"
-                 "\nTo check Health, Enter 3\nTo Build the ship,Enter 4",3.5)
-    print("   ")
+    for te in list(range(1,5)):
+        print_pause("\nTo check food, Enter 1\nTo check Materials, Enter 2"
+                    "\nTo check Health, Enter 3\nTo Build the ship,Enter 4",3.5)
+        print("   ")
 
-    while True:
-        gh = input("Enter a number: ")
-        if gh == '1':
-            #food
-            if matr_check(foods,100) == 2:
-                print_pause("Collect some food\n i.e "
-                             "From forest or plant some",2)
-                while foods < 100:
-                    print_pause("Choose 1 for forest and 2 for plant",1.7)
-                    cho(food("collect"),plant())
-                    if cont == '1':
-                        foods = foods + 5
-                        total_score = total_score - 3
-                        print("Score: ",total_score)
-                        break
-                    elif cont == '2':
-                        foods = foods + 10
-                        materials = materials - 3
-                        print("Score: ",total_score)
-                        break
-                    matr_check(foods,100)
-                print_pause("Your food is ready",2)
-                print("    ")
-                print("Food: ",foods)
-                print("Score: ",total_score)
-                print("materials: ",materials)
-            elif matr_check(foods,100) == 1: 
-                print_pause("Your food is ready",2)
-                print("    ")
-                print("Food: ",foods)
-                print("Score: ",total_score)
-                print("materials: ",materials)
-            break
-        elif gh == '2':
-            #materials
-            if matr_check(materials,300) == 2:
-                print_pause("Collect some materilas"
-                             "\ni.e From forest,sea or cave",2)
-                while materials < 300:
-                    print_pause("Choose 1 for forest,"
-                                 "2 for sea and 3 for cave",1.7)
-                    while True:
-                        yu = input("Choose 1 or 2 or 3: ")
-                        if yu == '1':
-                            collect_matr("wood")
-                            total_score -= 3
+        while True:
+            gh = input("Enter a number: ")
+            if gh == '1':
+                #food
+                if matr_check(foods,100) == 2:
+                    print_pause("Collect some food\n i.e "
+                                "From forest or plant some",2)
+                    while foods < 100:
+                        print_pause("Choose 1 for forest and 2 for plant",1.7)
+                        cho(food("collect"),plant())
+                        if cont == '1':
+                            foods = foods + 5
+                            total_score = total_score - 3
+                            print("Score: ",total_score)
                             break
-                        elif yu == '2':
-                            collect_matr("lost")
-                            health -= 2
-                            print("Health: ",health)
+                        elif cont == '2':
+                            foods = foods + 10
+                            materials = materials - 3
+                            print("Score: ",total_score)
                             break
-                        elif yu == '3':
-                            collect_matr("imp")
-                            total_score -= 2
-                            break
-                        else:
-                            print("invalid input try again")
+                        matr_check(foods,100)
+                    print_pause("Your food is ready",2)
+                    print("    ")
+                    print("Food: ",foods)
+                    print("Score: ",total_score)
+                    print("materials: ",materials)
+                elif matr_check(foods,100) == 1: 
+                    print_pause("Your food is ready",2)
+                    print("    ")
+                    print("Food: ",foods)
+                    print("Score: ",total_score)
+                    print("materials: ",materials)
+                break
+            elif gh == '2':
+                #materials
+                hg = matr_check(materials,300)
+                if hg == 2:
+                    print_pause("Collect some materilas"
+                                "\ni.e From forest,sea or cave",2)
+                    while materials < 300:
+                        print_pause("Choose 1 for forest,"
+                                    "2 for sea and 3 for cave",1.7)
+                        while True:
+                            yu = input("Choose 1 or 2 or 3: ")
+                            if yu == '1':
+                                f1 = collect_matr("wood")
+                                print_pause(f1,2)
+                                total_score -= 3
+                                print("Score: ",total_score)
+                                break
+                            elif yu == '2':
+                                f2 = collect_matr("lost")
+                                print_pause(f2 , 2)
+                                health -= 2
+                                print("Health: ",health)
+                                break
+                            elif yu == '3':
+                                f3 = collect_matr("imp")
+                                print_pause(f3,2)
+                                total_score -= 2
+                                print("Score: ",total_score)
+                                break
+                            else:
+                                print("invalid input try again")
                         matr_check(materials,100)
-                print_pause("Your materials are ready",2)
-                print("materials: ",materials)
-                print("Score: ",total_score)
-            elif matr_check(materials,300) == 1:
-                print_pause("Your materials are ready",2)
-                print("materials: ",materials)
-                print("Score: ",total_score)
-            break
-        elif gh == '3':
-            #Health
-            if matr_check(health,70) == 2:
-                print_pause("Increase health",2)
-                while health < 70:
-                    print_pause("You will lose 5 score for each 1 health",2)
-                    lk = 70 - health
-                    health += lk
-                    total_score -= lk*5
-                print_pause("Your health is ready",2)
-                print("Score: ",total_score)
-            elif matr_check(health,70) == 1:
-                print_pause("Your health is ready",2)
-                print("Health: ",health)
-            break
-        elif gh == '4':
-            #ship
-            ship()
-            break
-        else:
-            print("try again")
+                    print_pause("Your materials are ready",2)
+                    print("materials: ",materials)
+                    print("Score: ",total_score)
+                elif hg == 1:
+                    print_pause("Your materials are ready",2)
+                    print("materials: ",materials)
+                    print("Score: ",total_score)
+                break
+            elif gh == '3':
+                #Health
+                if matr_check(health,70) == 2:
+                    print_pause("Increase health",2)
+                    while health < 70:
+                        print_pause("You will lose 5 score for each 1 health",2)
+                        lk = 70 - health
+                        health += lk
+                        total_score -= lk*5
+                    print_pause("Your health is ready",2)
+                    print("Score: ",total_score)
+                elif matr_check(health,70) == 1:
+                    print_pause("Your health is ready",2)
+                    print("Health: ",health)
+                break
+            elif gh == '4':
+                #ship
+                ship()
+                break
+            else:
+                print("try again")
 
     won_lose()
     print("       ")
