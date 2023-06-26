@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student or Teacher?</title>
+        <style>
+            body {
+                background: linear-gradient(to bottom right, #ff69b4, #00bfff);
+                background-size: cover;
+                background-position: center;
+            }
+            .hidden {
+                display: none;
+            }
+            .user-type-toggle {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            .user-type-toggle button {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 20px;
+                background-color: #ddd;
+                color: #333;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            .user-type-toggle button.active {
+                background-color: #007bff;
+                color: #fff;
+            }
+            #student-form, #teacher-form {
+                margin-top: 20px;
+            }
+            .hidden {
+                display: none;
+            }
+            .photo-container {
+                display: flex;
+            }
+            .photo-container img {
+                width: 33.33%;
+                height: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="user-type-toggle">
+            <button id="student-btn" class="active">Student</button>
+            <button id="teacher-btn">Teacher</button>
+        </div>
+          
+        <div id="student-form">
+            <h2>Student Sign-Up Form</h2>
+            <!-- Add student form fields here -->
+            <div class="photo-container">
+                <img src="photo1.jpg" alt="Photo 1">
+                <img src="photo2.jpg" alt="Photo 2">
+                <img src="photo3.jpg" alt="Photo 3">
+            </div>
+
+        </div>
+          
+        <div id="teacher-form" class="hidden">
+           <h2>Teacher Sign-Up Form</h2>
+           <!-- Add teacher form fields here -->
+        </div>
+        <script>
+            const studentBtn = document.getElementById('student-btn');
+            const teacherBtn = document.getElementById('teacher-btn');
+            const studentForm = document.getElementById('student-form');
+            const teacherForm = document.getElementById('teacher-form');
+
+            studentBtn.addEventListener('click', () => {
+            studentBtn.classList.add('active');
+            teacherBtn.classList.remove('active');
+            studentForm.classList.remove('hidden');
+            teacherForm.classList.add('hidden');
+            });
+
+            teacherBtn.addEventListener('click', () => {
+            teacherBtn.classList.add('active');
+            studentBtn.classList.remove('active');
+            teacherForm.classList.remove('hidden');
+            studentForm.classList.add('hidden');
+            });
+        </script>
+    </body>
+</html>

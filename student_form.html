@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign In</title>
+        <style>
+            .container_l {
+                width: 50%;
+                height: 100%;
+                text-align: center;
+                /*background-color: rgb(192, 144, 84);*/
+                float: left;
+            }
+            .container_r{
+                width: 50%;
+                height: 100%;
+                text-align: center;
+                /*background-color: rgb(192, 144, 84);*/
+                float: right;
+            }
+            .headme {
+                border: 2px solid #1B1C1C;
+                border-radius: 10px;
+                width: 90%;
+                padding: 15px;
+                margin-left: 10px;
+                background-color: #aa9e98;
+                text-align: center;
+                border-width: 8px;
+                font-size: 20px;
+            }
+            input[type="text"] {
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                background-color: #d18e8e;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                font-size: 16px;
+                color: #333;
+                outline: none;
+                transition: all 0.3s ease-in-out;
+            }
+            input[type="text"]:focus {
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+                background-color: #bb6161;
+            }
+            body {
+               background: radial-gradient(circle, #ff69b4, #00bfff); 
+            }
+            #img_container_l {
+                width: 47%;
+                height: 100%;
+                text-align: center;
+                /*background-color: rgb(192, 144, 84);*/
+                float: left;
+                border: 2px solid #1B1C1C;
+                border-radius: 10px;
+                border-width: 8px;
+            }
+            form {
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            }
+            label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+            }
+            input[type="date"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            }
+            button {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin-top: 10px;
+                margin-right: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            button[type="reset"] {
+                background-color: #f44336;
+            }
+            button:hover {
+                opacity: 0.8;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <br><br><br><br><br><img src="notebook.jpg" alt="online learning" height="200" id="img_container_l">
+        </div>
+        <div class="container_r">
+            <p class="headme"><b>We would like to know some information about you</b></p>
+            <br><br>
+            <div class="container_l">
+                <form action="submit_data.php" method="post">
+                    <label for="data"><b>Name </b></label>
+                    <br><br>
+                    <input type="text" name="input-text" placeholder="Enter your name" tabindex="1" onkeydown="if (event.keyCode == 13) { document.getElementById('field2').focus(); return false; }">
+                    <br><br>
+                    <label for="data"><b>E-mail </b></label>
+                    <br><br>
+                    <input type="text" name="input-text" placeholder="Enter email" tabindex="2" onkeydown="if (event.keyCode == 13) { document.getElementById('field2').focus(); return false; }">
+                    <br><br>
+                    <label for="data"><b>Phone Number </b></label>
+                    <br><br>
+                    <input type="text" name="input-text" placeholder="Enter here"tabindex="3" onkeydown="if (event.keyCode == 13) { document.getElementById('field2').focus(); return false; }">
+                </form>
+            </div>
+            <div class="container_r">
+                <form action="submit_data.php" method="post">
+                    <label for="data" ><b>Birth Date:</b></label>
+                    <input type="date" id="birthdate" name="birthdate">
+                    <br><br>
+                    <label for="data"><b>Do you have a code? </b></label>
+                    <br>
+                    <input type="text" name="input-text" placeholder="Enter code here">
+                    <br><br>
+                    <label for="data">Country:</label>
+                    <select id="country" name="country">
+                        <option value="">Select a country</option>
+                        <option value="USA">United States</option>
+                        <option value="Canada">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="South Korea">South Korea</option>
+                        <option value="Japan">Japan</option>
+                        <option value="China">China</option>
+                        <!-- Add more options for other countries -->
+                    </select>
+                    <br><br><br><br>
+                    <button type="submit">Submit</button>
+                    <button type="reset">Reset</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
